@@ -8,7 +8,12 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 const app = express();
 
 var compiler = webpack(config);
-app.use(webpackDevMiddleware(compiler, {noInfo: true, publicPath: config.output.publicPath}));
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+  noInfo: true,
+  hot: true,
+  historyApiFallback: true
+}));
 app.use(webpackHotMiddleware(compiler));
 
 app.get('/', (req, res) => {
