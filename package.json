@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "webpack": "webpack --config webpack.config.js"
+    "server": "nodemon server.js --ignore client",
+    "build": "webpack --config webpack.config.js",
+    "watch": "webpack --watch --config webpack.config.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,9 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
-    "webpack": "^3.7.1"
+    "babel-preset-react-hmre": "^1.1.1",
+    "webpack": "^3.7.1",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-hot-middleware": "^2.20.0"
   }
 }

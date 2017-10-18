@@ -1,7 +1,16 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './client/index.js',
+  entry: [
+    'webpack-hot-middleware/client',
+    './client/index.js',
+  ],
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ],
   module: {
     loaders: [
       {
@@ -13,7 +22,8 @@ module.exports = {
     extensions: ['.js', '.jsx']
   },
   output: {
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    publicPath: '/'
   }
 }
