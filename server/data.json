@@ -181,5 +181,128 @@
       "avatar": "http://dummyimage.com/190x219.bmp/cc0000/ffffff",
       "cover_photo": "http://dummyimage.com/526x892.png/dddddd/000000"
     }
+  ],
+  "sites": [
+    {
+      "id": 1,
+      "name": "Valley Edge",
+      "address": "7 Parkside Drive",
+      "city": "Anaheim",
+      "state": "California",
+      "postal_code": "92812",
+      "review_count": 2405
+    }, {
+      "id": 2,
+      "name": "Randy",
+      "address": "6689 Garrison Crossing",
+      "city": "Migrate",
+      "state": "Kentucky",
+      "postal_code": "41905",
+      "review_count": 4756
+    }, {
+      "id": 3,
+      "name": "Parkside",
+      "address": "75 Marcy Center",
+      "city": "Fayetteville",
+      "state": "North Carolina",
+      "postal_code": "28305",
+      "review_count": 230
+    }, {
+      "id": 4,
+      "name": "Del Mar",
+      "address": "71 Little Fleur Circle",
+      "city": "Omaha",
+      "state": "Nebraska",
+      "postal_code": "68134",
+      "review_count": 615
+    }, {
+      "id": 5,
+      "name": "Hoffman",
+      "address": "83673 Duke Way",
+      "city": "San Francisco",
+      "state": "California",
+      "postal_code": "94159",
+      "review_count": 4157
+    }, {
+      "id": 6,
+      "name": "Center",
+      "address": "9486 Melrose Pass",
+      "city": "Chicago",
+      "state": "Illinois",
+      "postal_code": "60697",
+      "review_count": 697
+    }, {
+      "id": 7,
+      "name": "Maple",
+      "address": "452 Canary Way",
+      "city": "Boston",
+      "state": "Massachusetts",
+      "postal_code": "02208",
+      "review_count": 7753
+    }, {
+      "id": 8,
+      "name": "Hudson",
+      "address": "3 Amoth Road",
+      "city": "Lincoln",
+      "state": "Nebraska",
+      "postal_code": "68505",
+      "review_count": 4817
+    }, {
+      "id": 9,
+      "name": "Springview",
+      "address": "21959 Gerald Way",
+      "city": "Sacramento",
+      "state": "California",
+      "postal_code": "95838",
+      "review_count": 6075
+    }, {
+      "id": 10,
+      "name": "Service",
+      "address": "7 Crownhardt Road",
+      "city": "Austin",
+      "state": "Texas",
+      "postal_code": "78726",
+      "review_count": 2662
+    }, {
+      "id": 11,
+      "name": "Corben",
+      "address": "62 Petterle Circle",
+      "city": "Merrifield",
+      "state": "Virginia",
+      "postal_code": "22119",
+      "review_count": 6614
+    }, {
+      "id": 12,
+      "name": "Derek",
+      "address": "4662 Ryan Park",
+      "city": "Louisville",
+      "state": "Kentucky",
+      "postal_code": "40205",
+      "review_count": 5454
+    }, {
+      "id": 13,
+      "name": "Sugar",
+      "address": "671 Buell Street",
+      "city": "Lake Worth",
+      "state": "Florida",
+      "postal_code": "33462",
+      "review_count": 1604
+    }, {
+      "id": 14,
+      "name": "Mandrake",
+      "address": "32 Eggendart Terrace",
+      "city": "Sacramento",
+      "state": "California",
+      "postal_code": "94257",
+      "review_count": 5717
+    }, {
+      "id": 15,
+      "name": "Hintze",
+      "address": "90 Amoth Terrace",
+      "city": "Warren",
+      "state": "Michigan",
+      "postal_code": "48092",
+      "review_count": 3782
+    }
   ]
 }
