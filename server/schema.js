@@ -8,21 +8,35 @@ const {
   GraphyQLNonNull
 } = require('graphql');
 
-// hardcoded data
-// const users = [
-//   {id: '1', name: 'Rebecca Adams', email: 'radams@gmail.com', age: 16},
-//   {id: '2', name: 'Robin Kim', email: 'rkim@gmail.com', age: 14},
-//   {id: '3', name: 'Hailey Foster', email: 'hfoster@gmail.com', age: 12},
-// ];
-
 // user type
 const UserType = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: {type:GraphQLString},
-    name: {type:GraphQLString},
+    facebook_id: {type:GraphQLString},
+    username: {type:GraphQLString},
+    password: {type:GraphQLString},
+    first_name: {type:GraphQLString},
+    last_name: {type:GraphQLString},
     email: {type:GraphQLString},
-    age: {type:GraphQLInt},
+    city: {type:GraphQLString},
+    state: {type:GraphQLString},
+    avatar: {type:GraphQLString},
+    cover_photo: {type:GraphQLString},
+  })
+});
+
+// site type
+const SiteType = new GraphQLObjectType({
+  name: 'Site',
+  fields: () => ({
+    id: {type:GraphQLString},
+    name: {type:GraphQLString},
+    address: {type:GraphQLString},
+    city: {type:GraphQLString},
+    state: {type:GraphQLString},
+    postal_code: {type:GraphQLString},
+    review_count: {type:GraphQLInt}
   })
 });
 
@@ -35,20 +49,35 @@ const RootQuery = new GraphQLObjectType({
       args: {
         id: {type:GraphQLString}
       },
-      resolve(parentValue, args){
-        // for(let i = 0; i < users.length; i++) {
-        //   if(users[i].id === args.id) {
-        //     return users[i];
-        //   }
-        // }
+      resolve(parentValue, args) {
+        return axios.get('http://localhost:3000/users/' + args.id)
+          .then(res => res.data);
       }
     },
     users: {
       type: new GraphQLList(UserType),
       resolve(parentValue, args) {
-        return users;
+        return axios.get('http://localhost:3000/users/')
+          .then(res => res.data);
       }
-    }
+    },
+    site: {
+      type: SiteType,
+      args: {
+        id: {type:GraphQLString}
+      },
+      resolve(parentValue, args) {
+        return axios.get('http://localhost:3000/sites/' + args.id)
+          .then(res => res.data);
+      }
+    },
+    sites: {
+      type: new GraphQLList(SiteType),
+      resolve(parentValue, args) {
+        return axios.get('http://localhost:3000/sites/')
+          .then(res => res.data);
+      }
+    },
   }
 });
 
