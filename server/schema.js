@@ -26,6 +26,20 @@ const UserType = new GraphQLObjectType({
   })
 });
 
+// review type
+const ReviewType = new GraphQLObjectType({
+  name: 'Review',
+  fields: () => ({
+    id: {type:GraphQLString},
+    rating: {type:GraphQLInt},
+    title: {type:GraphQLString},
+    text: {type:GraphQLString},
+    date: {type:GraphQLString},
+    userId: {type:GraphQLInt},
+    siteId: {type:GraphQLInt}
+  })
+});
+
 // site type
 const SiteType = new GraphQLObjectType({
   name: 'Site',
@@ -58,6 +72,25 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(UserType),
       resolve(parentValue, args) {
         return axios.get('http://localhost:3000/users/')
+          .then(res => res.data);
+      }
+    },
+    review: {
+      type: ReviewType,
+      args: {
+        id: {type:GraphQLString},
+        userId: {type:GraphQLInt},
+        siteId: {type:GraphQLInt}
+      },
+      resolve(parentValue, args) {
+        return axios.get('http://localhost:3000/reviews' + args.id)
+          .then(res => res.data);
+      }
+    },
+    reviews: {
+      type: new GraphQLList(ReviewType),
+      resolve(parentValue, args) {
+        return axios.get('http://localhost:3000/reviews/')
           .then(res => res.data);
       }
     },
