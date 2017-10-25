@@ -5,7 +5,7 @@ const {
   GraphQLInt,
   GraphQLSchema,
   GraphQLList,
-  GraphyQLNonNull
+  GraphQLNonNull
 } = require('graphql');
 
 // user type
@@ -83,7 +83,7 @@ const RootQuery = new GraphQLObjectType({
         siteId: {type:GraphQLInt}
       },
       resolve(parentValue, args) {
-        return axios.get('http://localhost:3000/reviews' + args.id)
+        return axios.get('http://localhost:3000/reviews/' + args.id)
           .then(res => res.data);
       }
     },
@@ -114,6 +114,73 @@ const RootQuery = new GraphQLObjectType({
   }
 });
 
+const RootMutation = new GraphQLObjectType({
+  name: 'RootMutationType',
+  fields: {
+    addUser: {
+      type: UserType,
+      args: {
+        facebook_id: {type: GraphQLString},
+        username: {type: GraphQLString},
+        password: {type: GraphQLString},
+        first_name: {type: GraphQLString},
+        last_name: {type: GraphQLString},
+        email: {type: GraphQLString},
+        city: {type: GraphQLString},
+        state: {type: GraphQLString},
+        avatar: {type: GraphQLString},
+        cover_photo: {type: GraphQLString},
+      },
+      resolve(parentValue, args) {
+        return axios.post('http://localhost:3000/users/', {
+          facebook_id: args.facebook_id,
+          username: args.username,
+          password: args.password,
+          first_name: args.first_name,
+          last_name: args.last_name,
+          email: args.email,
+          city: args.city,
+          state: args.state,
+          avatar: args.avatar,
+          cover_photo: args.cover_photo,
+        })
+        .then(res => res.data);
+      }
+    },
+    editUser: {
+      type: UserType,
+      args: {
+        id: {type:GraphQLString},
+        facebook_id: {type: GraphQLString},
+        username: {type: GraphQLString},
+        password: {type: GraphQLString},
+        first_name: {type: GraphQLString},
+        last_name: {type: GraphQLString},
+        email: {type: GraphQLString},
+        city: {type: GraphQLString},
+        state: {type: GraphQLString},
+        avatar: {type: GraphQLString},
+        cover_photo: {type: GraphQLString},
+      },
+      resolve(parentValue, args) {
+        return axios.patch('http://localhost:3000/users/' + args.id, args)
+        .then(res => res.data);
+      }
+    },
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: {type: GraphQLString},
+      },
+      resolve(parentValue, args) {
+        return axios.delete('http://localhost:3000/users/' + args.id)
+        .then(res => res.data);
+      }
+    }
+  }
+});
+
 module.exports = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation: RootMutation
 });

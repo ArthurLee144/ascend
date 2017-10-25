@@ -12,7 +12,8 @@
       "state": "Alabama",
       "avatar": "http://dummyimage.com/151x189.jpg/dddddd/000000",
       "cover_photo": "http://dummyimage.com/896x581.jpg/5fa2dd/ffffff"
-    }, {
+    },
+    {
       "id": 2,
       "facebook_id": "8409083236923497",
       "username": "jwoodings1",
@@ -24,7 +25,8 @@
       "state": "California",
       "avatar": "http://dummyimage.com/108x163.png/5fa2dd/ffffff",
       "cover_photo": "http://dummyimage.com/670x745.bmp/ff4444/ffffff"
-    }, {
+    },
+    {
       "id": 3,
       "facebook_id": "2224596369053395",
       "username": "sbalkwill2",
@@ -36,7 +38,8 @@
       "state": "California",
       "avatar": "http://dummyimage.com/180x160.jpg/cc0000/ffffff",
       "cover_photo": "http://dummyimage.com/660x817.jpg/dddddd/000000"
-    }, {
+    },
+    {
       "id": 4,
       "facebook_id": "0064755758192574",
       "username": "sstelle3",
@@ -48,7 +51,8 @@
       "state": "Georgia",
       "avatar": "http://dummyimage.com/232x143.png/5fa2dd/ffffff",
       "cover_photo": "http://dummyimage.com/822x882.png/5fa2dd/ffffff"
-    }, {
+    },
+    {
       "id": 5,
       "facebook_id": "2212436807735147",
       "username": "cesposi4",
@@ -60,7 +64,8 @@
       "state": "Pennsylvania",
       "avatar": "http://dummyimage.com/180x168.bmp/dddddd/000000",
       "cover_photo": "http://dummyimage.com/811x930.bmp/ff4444/ffffff"
-    }, {
+    },
+    {
       "id": 6,
       "facebook_id": "8829361922102114",
       "username": "eboole5",
@@ -72,7 +77,8 @@
       "state": "Colorado",
       "avatar": "http://dummyimage.com/191x118.jpg/ff4444/ffffff",
       "cover_photo": "http://dummyimage.com/562x891.bmp/dddddd/000000"
-    }, {
+    },
+    {
       "id": 7,
       "facebook_id": "5882179803702723",
       "username": "gposkitt6",
@@ -84,7 +90,8 @@
       "state": "Missouri",
       "avatar": "http://dummyimage.com/119x198.jpg/ff4444/ffffff",
       "cover_photo": "http://dummyimage.com/997x625.bmp/cc0000/ffffff"
-    }, {
+    },
+    {
       "id": 8,
       "facebook_id": "3570479805520401",
       "username": "bhischke7",
@@ -96,7 +103,8 @@
       "state": "New Jersey",
       "avatar": "http://dummyimage.com/117x232.bmp/dddddd/000000",
       "cover_photo": "http://dummyimage.com/508x577.png/dddddd/000000"
-    }, {
+    },
+    {
       "id": 9,
       "facebook_id": "4859038596208546",
       "username": "rpiscopiello8",
@@ -108,7 +116,8 @@
       "state": "Arizona",
       "avatar": "http://dummyimage.com/152x233.bmp/ff4444/ffffff",
       "cover_photo": "http://dummyimage.com/769x649.bmp/dddddd/000000"
-    }, {
+    },
+    {
       "id": 10,
       "facebook_id": "6799869343896417",
       "username": "dcenter9",
@@ -120,7 +129,8 @@
       "state": "Florida",
       "avatar": "http://dummyimage.com/219x211.bmp/dddddd/000000",
       "cover_photo": "http://dummyimage.com/832x689.png/ff4444/ffffff"
-    }, {
+    },
+    {
       "id": 11,
       "facebook_id": "2477919877985049",
       "username": "dgaulta",
@@ -132,7 +142,8 @@
       "state": "Florida",
       "avatar": "http://dummyimage.com/172x226.bmp/dddddd/000000",
       "cover_photo": "http://dummyimage.com/917x640.jpg/dddddd/000000"
-    }, {
+    },
+    {
       "id": 12,
       "facebook_id": "6724688504061217",
       "username": "mbansalb",
@@ -144,7 +155,8 @@
       "state": "Colorado",
       "avatar": "http://dummyimage.com/239x107.png/ff4444/ffffff",
       "cover_photo": "http://dummyimage.com/936x811.jpg/ff4444/ffffff"
-    }, {
+    },
+    {
       "id": 13,
       "facebook_id": "2819380854365187",
       "username": "cwitterc",
@@ -156,7 +168,8 @@
       "state": "California",
       "avatar": "http://dummyimage.com/189x249.png/5fa2dd/ffffff",
       "cover_photo": "http://dummyimage.com/713x582.bmp/dddddd/000000"
-    }, {
+    },
+    {
       "id": 14,
       "facebook_id": "6746821527955562",
       "username": "phacaudd",
@@ -168,7 +181,8 @@
       "state": "Ohio",
       "avatar": "http://dummyimage.com/209x182.bmp/dddddd/000000",
       "cover_photo": "http://dummyimage.com/755x861.jpg/ff4444/ffffff"
-    }, {
+    },
+    {
       "id": 15,
       "facebook_id": "2996084364468338",
       "username": "mcunnelle",
@@ -176,8 +190,8 @@
       "first_name": "Myra",
       "last_name": "Cunnell",
       "email": "mcunnelle@twitpic.com",
-      "city": "Buffalo",
-      "state": "New York",
+      "city": "San Francisco",
+      "state": "California",
       "avatar": "http://dummyimage.com/190x219.bmp/cc0000/ffffff",
       "cover_photo": "http://dummyimage.com/526x892.png/dddddd/000000"
     }
@@ -191,7 +205,8 @@
       "state": "California",
       "postal_code": "92812",
       "review_count": 2405
-    }, {
+    },
+    {
       "id": 2,
       "name": "Randy",
       "address": "6689 Garrison Crossing",
@@ -199,7 +214,8 @@
       "state": "Kentucky",
       "postal_code": "41905",
       "review_count": 4756
-    }, {
+    },
+    {
       "id": 3,
       "name": "Parkside",
       "address": "75 Marcy Center",
@@ -207,7 +223,8 @@
       "state": "North Carolina",
       "postal_code": "28305",
       "review_count": 230
-    }, {
+    },
+    {
       "id": 4,
       "name": "Del Mar",
       "address": "71 Little Fleur Circle",
@@ -215,7 +232,8 @@
       "state": "Nebraska",
       "postal_code": "68134",
       "review_count": 615
-    }, {
+    },
+    {
       "id": 5,
       "name": "Hoffman",
       "address": "83673 Duke Way",
@@ -223,7 +241,8 @@
       "state": "California",
       "postal_code": "94159",
       "review_count": 4157
-    }, {
+    },
+    {
       "id": 6,
       "name": "Center",
       "address": "9486 Melrose Pass",
@@ -231,7 +250,8 @@
       "state": "Illinois",
       "postal_code": "60697",
       "review_count": 697
-    }, {
+    },
+    {
       "id": 7,
       "name": "Maple",
       "address": "452 Canary Way",
@@ -239,7 +259,8 @@
       "state": "Massachusetts",
       "postal_code": "02208",
       "review_count": 7753
-    }, {
+    },
+    {
       "id": 8,
       "name": "Hudson",
       "address": "3 Amoth Road",
@@ -247,7 +268,8 @@
       "state": "Nebraska",
       "postal_code": "68505",
       "review_count": 4817
-    }, {
+    },
+    {
       "id": 9,
       "name": "Springview",
       "address": "21959 Gerald Way",
@@ -255,7 +277,8 @@
       "state": "California",
       "postal_code": "95838",
       "review_count": 6075
-    }, {
+    },
+    {
       "id": 10,
       "name": "Service",
       "address": "7 Crownhardt Road",
@@ -263,7 +286,8 @@
       "state": "Texas",
       "postal_code": "78726",
       "review_count": 2662
-    }, {
+    },
+    {
       "id": 11,
       "name": "Corben",
       "address": "62 Petterle Circle",
@@ -271,7 +295,8 @@
       "state": "Virginia",
       "postal_code": "22119",
       "review_count": 6614
-    }, {
+    },
+    {
       "id": 12,
       "name": "Derek",
       "address": "4662 Ryan Park",
@@ -279,7 +304,8 @@
       "state": "Kentucky",
       "postal_code": "40205",
       "review_count": 5454
-    }, {
+    },
+    {
       "id": 13,
       "name": "Sugar",
       "address": "671 Buell Street",
@@ -287,7 +313,8 @@
       "state": "Florida",
       "postal_code": "33462",
       "review_count": 1604
-    }, {
+    },
+    {
       "id": 14,
       "name": "Mandrake",
       "address": "32 Eggendart Terrace",
@@ -295,7 +322,8 @@
       "state": "California",
       "postal_code": "94257",
       "review_count": 5717
-    }, {
+    },
+    {
       "id": 15,
       "name": "Hintze",
       "address": "90 Amoth Terrace",
