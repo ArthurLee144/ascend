@@ -5,8 +5,10 @@ const config = require('./webpack.config.js');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const graphqlHTTP = require('express-graphql');
+// const schema = require('./server/db/schema.js');
 const schema = require('./server/schema.js');
 
+const PORT = 8080;
 const app = express();
 
 //hot module reload with webpack middleware
@@ -28,6 +30,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve('./dist/index.html'));
 });
 
-app.listen(8080, () => {
-  console.log('App is listening on port 8080');
+app.listen(PORT, () => {
+  console.log(`App is listening on port ${PORT}`);
 });
