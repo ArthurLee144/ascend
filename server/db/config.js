@@ -60,23 +60,31 @@ const User = connection.define('user', {
   }
 });
 
-// const Review = connection.define('review', {
-//   title: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   content: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   }
-// });
+const Review = connection.define('review', {
+  rating: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  title: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  text: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  },
+  date: {
+    type: Sequelize.DATE,
+    allowNull: false
+  }
+});
 
 //Relationships
-// User.hasMany(Review);
-// Review.belongsTo(User);
+User.hasMany(Review);
+Review.belongsTo(User);
 
 connection.sync({force: true}).then(() => {
-  _.times(5, () => {
+  _.times(10, () => {
     return User.create({
       facebook_id: Faker.random.number({
           'min': 1000000000000000,
@@ -90,6 +98,16 @@ connection.sync({force: true}).then(() => {
       city: Faker.address.city(),
       state: Faker.address.streetAddress(),
       avatar: Faker.internet.avatar()
+    }).then(user => {
+      return user.createReview({
+        rating: Faker.random.number({
+          'min': 1,
+          'max': 5
+        }),
+        title: Faker.lorem.sentence(),
+        text: Faker.lorem.paragraph(),
+        date: Faker.date.past()
+      });
     });
   });
 });

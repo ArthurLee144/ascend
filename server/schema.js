@@ -64,7 +64,7 @@ const RootQuery = new GraphQLObjectType({
         id: {type:GraphQLString}
       },
       resolve(parentValue, args) {
-        return db.modesl.user.findOne({where: args});
+        return db.models.user.findOne({where: args});
       }
     },
     users: {

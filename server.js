@@ -23,7 +23,8 @@ app.use(webpackHotMiddleware(compiler));
 //graphQL http server
 app.use('/graphql', graphqlHTTP({
   schema: schema,
-  graphiql: true
+  graphiql: true,
+  pretty: true
 }));
 
 app.get('/', (req, res) => {
