@@ -22,7 +22,13 @@ const UserType = new GraphQLObjectType({
     email: {type:GraphQLString},
     city: {type:GraphQLString},
     state: {type:GraphQLString},
-    avatar: {type:GraphQLString}
+    avatar: {type:GraphQLString},
+    reviews: {
+      type: new GraphQLList(ReviewType),
+      resolve(user) {
+        return user.getReviews();
+      }
+    }
   })
 });
 
@@ -35,8 +41,12 @@ const ReviewType = new GraphQLObjectType({
     title: {type:GraphQLString},
     text: {type:GraphQLString},
     date: {type:GraphQLString},
-    userId: {type:GraphQLInt},
-    siteId: {type:GraphQLInt}
+    user: {
+      type: UserType,
+      resolve(review) {
+        return review.getUser()
+      }
+    }
   })
 });
 
@@ -72,7 +82,7 @@ const RootQuery = new GraphQLObjectType({
       resolve(parentValue, args) {
         return db.models.user.findAll({where: args});
       }
-    }
+    },
     // review: {
     //   type: ReviewType,
     //   args: {
@@ -85,13 +95,12 @@ const RootQuery = new GraphQLObjectType({
     //       .then(res => res.data);
     //   }
     // },
-    // reviews: {
-    //   type: new GraphQLList(ReviewType),
-    //   resolve(parentValue, args) {
-    //     return axios.get('http://localhost:3000/reviews/')
-    //       .then(res => res.data);
-    //   }
-    // },
+    reviews: {
+      type: new GraphQLList(ReviewType),
+      resolve(parentValue, args) {
+        return db.models.review.findAll({where: args});
+      }
+    },
     // site: {
     //   type: SiteType,
     //   args: {
