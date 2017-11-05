@@ -2,13 +2,13 @@ const Sequelize = require('sequelize');
 const _ = require('lodash');
 const Faker = require('faker');
 
-const connection = new Sequelize('ascend-db', 'root', 'root',
+const db = new Sequelize('ascend-db', 'root', 'root',
   {
     dialect: 'mysql'
   }
 );
 
-connection
+db
   .authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
@@ -17,7 +17,7 @@ connection
     console.error('Unable to connect to the database:', err);
   });
 
-const User = connection.define('user', {
+const User = db.define('user', {
   facebook_id: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -42,6 +42,7 @@ const User = connection.define('user', {
   email: {
     type: Sequelize.STRING,
     allowNull: false,
+    unique: true,
     validate: {
       isEmail: true
     }
@@ -60,7 +61,7 @@ const User = connection.define('user', {
   }
 });
 
-const Review = connection.define('review', {
+const Review = db.define('review', {
   rating: {
     type: Sequelize.INTEGER,
     allowNull: false
@@ -72,9 +73,33 @@ const Review = connection.define('review', {
   text: {
     type: Sequelize.TEXT,
     allowNull: false
+  }
+});
+
+const Site = db.define('site', {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
   },
-  date: {
-    type: Sequelize.DATE,
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  city: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  state: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  zip_code: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  review_count: {
+    type: Sequelize.INTEGER,
     allowNull: false
   }
 });
@@ -82,8 +107,13 @@ const Review = connection.define('review', {
 //Relationships
 User.hasMany(Review);
 Review.belongsTo(User);
+Site.hasMany(Review);
+Review.belongsTo(Site);
 
-connection.sync({force: true}).then(() => {
+// is this necessary?
+// User.hasMany(Site);
+
+db.sync({force: true}).then(() => {
   _.times(10, () => {
     return User.create({
       facebook_id: Faker.random.number({
@@ -98,18 +128,62 @@ connection.sync({force: true}).then(() => {
       city: Faker.address.city(),
       state: Faker.address.streetAddress(),
       avatar: Faker.internet.avatar()
-    }).then(user => {
-      return user.createReview({
-        rating: Faker.random.number({
-          'min': 1,
-          'max': 5
-        }),
-        title: Faker.lorem.sentence(),
-        text: Faker.lorem.paragraph(),
-        date: Faker.date.past()
+  }).then(user => {
+      return Site.create({
+        name: Faker.address.streetName(),
+        address: Faker.address.streetAddress(),
+        city: Faker.address.city(),
+        state: Faker.address.stateAbbr(),
+        zip_code: Faker.address.zipCode(),
+        review_count: Faker.random.number({
+          'min': 0,
+          'max': 99999
+        })
+      }).then(site => {
+        const userId = user.dataValues.id;
+        const siteId = site.dataValues.id;
+        _.times(3, () => {
+          return user.createReview({
+            rating: Faker.random.number({
+              'min': 0,
+              'max': 5,
+            }),
+            title: Faker.lorem.words(),
+            text: Faker.lorem.paragraphs(),
+            userId: userId,
+            siteId: siteId
+          });
+        })
       });
     });
   });
 });
 
-module.exports = connection;
+module.exports = db;
+
+// _.times(10, () => {
+//   return Site.create({
+//     name: Faker.address.streetName(),
+//     address: Faker.address.streetAddress(),
+//     city: Faker.address.city(),
+//     state: Faker.address.stateAbbr(),
+//     zip_code: Faker.address.zipCode(),
+//     review_count: Faker.random.number({
+//       'min': 0,
+//       'max': 99999
+//     })
+//   });
+// });
+
+// _.times(15, () => {
+//   return Review.create({
+//     rating: Faker.random.number({
+//       'min': 0,
+//       'max': 5,
+//     }),
+//     title: Faker.lorem.words(),
+//     text: Faker.lorem.paragraphs()
+//   }, {
+//     include: [User, Site]
+//   });
+// });

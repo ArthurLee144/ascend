@@ -203,7 +203,7 @@
       "address": "7 Parkside Drive",
       "city": "Anaheim",
       "state": "California",
-      "postal_code": "92812",
+      "zip_code": "92812",
       "review_count": 2405
     },
     {
@@ -212,7 +212,7 @@
       "address": "6689 Garrison Crossing",
       "city": "Migrate",
       "state": "Kentucky",
-      "postal_code": "41905",
+      "zip_code": "41905",
       "review_count": 4756
     },
     {
@@ -221,7 +221,7 @@
       "address": "75 Marcy Center",
       "city": "Fayetteville",
       "state": "North Carolina",
-      "postal_code": "28305",
+      "zip_code": "28305",
       "review_count": 230
     },
     {
@@ -230,7 +230,7 @@
       "address": "71 Little Fleur Circle",
       "city": "Omaha",
       "state": "Nebraska",
-      "postal_code": "68134",
+      "zip_code": "68134",
       "review_count": 615
     },
     {
@@ -239,7 +239,7 @@
       "address": "83673 Duke Way",
       "city": "San Francisco",
       "state": "California",
-      "postal_code": "94159",
+      "zip_code": "94159",
       "review_count": 4157
     },
     {
@@ -248,7 +248,7 @@
       "address": "9486 Melrose Pass",
       "city": "Chicago",
       "state": "Illinois",
-      "postal_code": "60697",
+      "zip_code": "60697",
       "review_count": 697
     },
     {
@@ -257,7 +257,7 @@
       "address": "452 Canary Way",
       "city": "Boston",
       "state": "Massachusetts",
-      "postal_code": "02208",
+      "zip_code": "02208",
       "review_count": 7753
     },
     {
@@ -266,7 +266,7 @@
       "address": "3 Amoth Road",
       "city": "Lincoln",
       "state": "Nebraska",
-      "postal_code": "68505",
+      "zip_code": "68505",
       "review_count": 4817
     },
     {
@@ -275,7 +275,7 @@
       "address": "21959 Gerald Way",
       "city": "Sacramento",
       "state": "California",
-      "postal_code": "95838",
+      "zip_code": "95838",
       "review_count": 6075
     },
     {
@@ -284,7 +284,7 @@
       "address": "7 Crownhardt Road",
       "city": "Austin",
       "state": "Texas",
-      "postal_code": "78726",
+      "zip_code": "78726",
       "review_count": 2662
     },
     {
@@ -293,7 +293,7 @@
       "address": "62 Petterle Circle",
       "city": "Merrifield",
       "state": "Virginia",
-      "postal_code": "22119",
+      "zip_code": "22119",
       "review_count": 6614
     },
     {
@@ -302,7 +302,7 @@
       "address": "4662 Ryan Park",
       "city": "Louisville",
       "state": "Kentucky",
-      "postal_code": "40205",
+      "zip_code": "40205",
       "review_count": 5454
     },
     {
@@ -311,7 +311,7 @@
       "address": "671 Buell Street",
       "city": "Lake Worth",
       "state": "Florida",
-      "postal_code": "33462",
+      "zip_code": "33462",
       "review_count": 1604
     },
     {
@@ -320,7 +320,7 @@
       "address": "32 Eggendart Terrace",
       "city": "Sacramento",
       "state": "California",
-      "postal_code": "94257",
+      "zip_code": "94257",
       "review_count": 5717
     },
     {
@@ -329,7 +329,7 @@
       "address": "90 Amoth Terrace",
       "city": "Warren",
       "state": "Michigan",
-      "postal_code": "48092",
+      "zip_code": "48092",
       "review_count": 3782
     }
   ],

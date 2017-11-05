@@ -10,7 +10,7 @@ const {
 const db = require('./db/config');
 
 // user type
-const UserType = new GraphQLObjectType({
+const User = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
     id: {type:GraphQLString},
@@ -24,7 +24,7 @@ const UserType = new GraphQLObjectType({
     state: {type:GraphQLString},
     avatar: {type:GraphQLString},
     reviews: {
-      type: new GraphQLList(ReviewType),
+      type: new GraphQLList(Review),
       resolve(user) {
         return user.getReviews();
       }
@@ -33,7 +33,7 @@ const UserType = new GraphQLObjectType({
 });
 
 // review type
-const ReviewType = new GraphQLObjectType({
+const Review = new GraphQLObjectType({
   name: 'Review',
   fields: () => ({
     id: {type:GraphQLString},
@@ -42,7 +42,7 @@ const ReviewType = new GraphQLObjectType({
     text: {type:GraphQLString},
     date: {type:GraphQLString},
     user: {
-      type: UserType,
+      type: User,
       resolve(review) {
         return review.getUser()
       }
@@ -51,7 +51,7 @@ const ReviewType = new GraphQLObjectType({
 });
 
 // site type
-const SiteType = new GraphQLObjectType({
+const Site = new GraphQLObjectType({
   name: 'Site',
   fields: () => ({
     id: {type:GraphQLString},
@@ -59,7 +59,7 @@ const SiteType = new GraphQLObjectType({
     address: {type:GraphQLString},
     city: {type:GraphQLString},
     state: {type:GraphQLString},
-    postal_code: {type:GraphQLString},
+    zip_code: {type:GraphQLString},
     review_count: {type:GraphQLInt}
   })
 });
@@ -69,7 +69,7 @@ const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     user: {
-      type: UserType,
+      type: User,
       args: {
         id: {type:GraphQLString}
       },
@@ -78,13 +78,13 @@ const RootQuery = new GraphQLObjectType({
       }
     },
     users: {
-      type: new GraphQLList(UserType),
+      type: new GraphQLList(User),
       resolve(parentValue, args) {
         return db.models.user.findAll({where: args});
       }
     },
     // review: {
-    //   type: ReviewType,
+    //   type: Review,
     //   args: {
     //     id: {type:GraphQLString},
     //     userId: {type:GraphQLInt},
@@ -96,13 +96,13 @@ const RootQuery = new GraphQLObjectType({
     //   }
     // },
     reviews: {
-      type: new GraphQLList(ReviewType),
+      type: new GraphQLList(Review),
       resolve(parentValue, args) {
         return db.models.review.findAll({where: args});
       }
     },
     // site: {
-    //   type: SiteType,
+    //   type: Site,
     //   args: {
     //     id: {type:GraphQLString}
     //   },
@@ -112,7 +112,7 @@ const RootQuery = new GraphQLObjectType({
     //   }
     // },
     // sites: {
-    //   type: new GraphQLList(SiteType),
+    //   type: new GraphQLList(Site),
     //   resolve(parentValue, args) {
     //     return axios.get('http://localhost:3000/sites/')
     //       .then(res => res.data);
@@ -125,20 +125,20 @@ const RootMutation = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: {
     addUser: {
-      type: UserType,
+      type: User,
       args: {
         facebook_id: {type: GraphQLString},
-        username: {type: GraphQLString},
-        password: {type: GraphQLString},
-        first_name: {type: GraphQLString},
-        last_name: {type: GraphQLString},
-        email: {type: GraphQLString},
+        username: {type: new GraphQLNonNull(GraphQLString)},
+        password: {type: new GraphQLNonNull(GraphQLString)},
+        first_name: {type: new GraphQLNonNull(GraphQLString)},
+        last_name: {type: new GraphQLNonNull(GraphQLString)},
+        email: {type: new GraphQLNonNull(GraphQLString)},
         city: {type: GraphQLString},
         state: {type: GraphQLString},
         avatar: {type: GraphQLString},
-        cover_photo: {type: GraphQLString},
       },
       resolve(parentValue, args) {
+        //NOTE: if something is not authorized, throw error in resolve
         return axios.post('http://localhost:3000/users/', {
           facebook_id: args.facebook_id,
           username: args.username,
@@ -149,13 +149,12 @@ const RootMutation = new GraphQLObjectType({
           city: args.city,
           state: args.state,
           avatar: args.avatar,
-          cover_photo: args.cover_photo,
         })
         .then(res => res.data);
       }
     },
     editUser: {
-      type: UserType,
+      type: User,
       args: {
         id: {type:GraphQLString},
         facebook_id: {type: GraphQLString},
@@ -167,7 +166,6 @@ const RootMutation = new GraphQLObjectType({
         city: {type: GraphQLString},
         state: {type: GraphQLString},
         avatar: {type: GraphQLString},
-        cover_photo: {type: GraphQLString},
       },
       resolve(parentValue, args) {
         return axios.patch('http://localhost:3000/users/' + args.id, args)
@@ -175,7 +173,7 @@ const RootMutation = new GraphQLObjectType({
       }
     },
     deleteUser: {
-      type: UserType,
+      type: User,
       args: {
         id: {type: GraphQLString},
       },
