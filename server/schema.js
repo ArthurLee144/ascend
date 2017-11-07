@@ -13,7 +13,7 @@ const db = require('./db/config');
 const User = new GraphQLObjectType({
   name: 'User',
   fields: () => ({
-    id: {type:GraphQLString},
+    id: {type:GraphQLInt},
     facebook_id: {type:GraphQLString},
     username: {type:GraphQLString},
     password: {type:GraphQLString},
@@ -36,7 +36,7 @@ const User = new GraphQLObjectType({
 const Review = new GraphQLObjectType({
   name: 'Review',
   fields: () => ({
-    id: {type:GraphQLString},
+    id: {type:GraphQLInt},
     rating: {type:GraphQLInt},
     title: {type:GraphQLString},
     text: {type:GraphQLString},
@@ -54,7 +54,7 @@ const Review = new GraphQLObjectType({
 const Site = new GraphQLObjectType({
   name: 'Site',
   fields: () => ({
-    id: {type:GraphQLString},
+    id: {type:GraphQLInt},
     name: {type:GraphQLString},
     address: {type:GraphQLString},
     city: {type:GraphQLString},
@@ -71,7 +71,7 @@ const RootQuery = new GraphQLObjectType({
     user: {
       type: User,
       args: {
-        id: {type:GraphQLString}
+        id: {type:GraphQLInt}
       },
       resolve(parentValue, args) {
         return db.models.user.findOne({where: args});
@@ -80,44 +80,41 @@ const RootQuery = new GraphQLObjectType({
     users: {
       type: new GraphQLList(User),
       resolve(parentValue, args) {
-        return db.models.user.findAll({where: args});
+        return db.models.user.findAll({});
       }
     },
-    // review: {
-    //   type: Review,
-    //   args: {
-    //     id: {type:GraphQLString},
-    //     userId: {type:GraphQLInt},
-    //     siteId: {type:GraphQLInt}
-    //   },
-    //   resolve(parentValue, args) {
-    //     return axios.get('http://localhost:3000/reviews/' + args.id)
-    //       .then(res => res.data);
-    //   }
-    // },
+    review: {
+      type: Review,
+      args: {
+        id: {type:GraphQLInt},
+        userId: {type:GraphQLInt},
+        siteId: {type:GraphQLInt}
+      },
+      resolve(parentValue, args) {
+        return db.models.review.findOne({where: args});
+      }
+    },
     reviews: {
       type: new GraphQLList(Review),
       resolve(parentValue, args) {
-        return db.models.review.findAll({where: args});
+        return db.models.review.findAll({});
       }
     },
-    // site: {
-    //   type: Site,
-    //   args: {
-    //     id: {type:GraphQLString}
-    //   },
-    //   resolve(parentValue, args) {
-    //     return axios.get('http://localhost:3000/sites/' + args.id)
-    //       .then(res => res.data);
-    //   }
-    // },
-    // sites: {
-    //   type: new GraphQLList(Site),
-    //   resolve(parentValue, args) {
-    //     return axios.get('http://localhost:3000/sites/')
-    //       .then(res => res.data);
-    //   }
-    // },
+    site: {
+      type: Site,
+      args: {
+        id: {type:GraphQLInt}
+      },
+      resolve(parentValue, args) {
+        return db.models.site.findOne({where: args});
+      }
+    },
+    sites: {
+      type: new GraphQLList(Site),
+      resolve(parentValue, args) {
+        return db.models.site.findAll({});
+      }
+    },
   }
 });
 
@@ -139,7 +136,7 @@ const RootMutation = new GraphQLObjectType({
       },
       resolve(parentValue, args) {
         //NOTE: if something is not authorized, throw error in resolve
-        return axios.post('http://localhost:3000/users/', {
+        return db.models.user.create({
           facebook_id: args.facebook_id,
           username: args.username,
           password: args.password,
@@ -156,7 +153,7 @@ const RootMutation = new GraphQLObjectType({
     editUser: {
       type: User,
       args: {
-        id: {type:GraphQLString},
+        id: {type:GraphQLInt},
         facebook_id: {type: GraphQLString},
         username: {type: GraphQLString},
         password: {type: GraphQLString},
@@ -175,7 +172,7 @@ const RootMutation = new GraphQLObjectType({
     deleteUser: {
       type: User,
       args: {
-        id: {type: GraphQLString},
+        id: {type:GraphQLInt},
       },
       resolve(parentValue, args) {
         return axios.delete('http://localhost:3000/users/' + args.id)

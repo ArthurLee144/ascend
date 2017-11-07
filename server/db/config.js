@@ -25,6 +25,7 @@ Review.belongsTo(User);
 Site.hasMany(Review);
 Review.belongsTo(Site);
 
+module.exports = db;
 
 
 
