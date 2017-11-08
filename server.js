@@ -10,23 +10,27 @@ const schema = require('./server/schema.js');
 const PORT = 8080;
 const app = express();
 
-//hot module reload with webpack middleware
-var compiler = webpack(config);
+// hot module reload with webpack middleware
+const compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
   hot: true,
-  historyApiFallback: true
+  historyApiFallback: true,
 }));
 app.use(webpackHotMiddleware(compiler));
 
-//graphQL http server
+// graphQL http server
 app.use('/graphql', graphqlHTTP({
-  schema: schema,
+  schema,
   graphiql: true,
-  pretty: true
+  pretty: true,
 }));
 
 app.get('/', (req, res) => {
+  res.sendFile(path.resolve('./dist/index.html'));
+});
+
+app.get('*', (req, res) => {
   res.sendFile(path.resolve('./dist/index.html'));
 });
 
