@@ -1,9 +1,9 @@
-module.exports.Site = function(db, DataTypes) {
-  const SiteModel = db.define('site', {
+module.exports.Site = (db, DataTypes) => {
+  const Site = db.define('site', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     address: {
       type: DataTypes.STRING,
@@ -23,8 +23,8 @@ module.exports.Site = function(db, DataTypes) {
     },
     review_count: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   });
-  return SiteModel;
-}
+  return Site;
+};

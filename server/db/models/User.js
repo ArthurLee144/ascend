@@ -1,5 +1,5 @@
-module.exports.User = function(db, DataTypes) {
-  const UserModel = db.define('user', {
+module.exports.User = (db, DataTypes) => {
+  const User = db.define('user', {
     facebook_id: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -7,40 +7,40 @@ module.exports.User = function(db, DataTypes) {
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
+      unique: true,
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     first_name: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true
-      }
+        isEmail: true,
+      },
     },
     city: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     state: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: true,
     },
     avatar: {
       type: DataTypes.STRING,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   });
-  return UserModel;
+  return User;
 };

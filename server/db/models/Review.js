@@ -1,17 +1,17 @@
-module.exports.Review = function(db, DataTypes) {
-  const ReviewModel = db.define('review', {
+module.exports.Review = (db, DataTypes) => {
+  const Review = db.define('review', {
     rating: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     text: {
       type: DataTypes.TEXT,
-      allowNull: false
-    }
+      allowNull: false,
+    },
   });
-  return ReviewModel;
-}
+  return Review;
+};

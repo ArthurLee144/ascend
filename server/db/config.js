@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize');
-const db = new Sequelize('ascend-db', 'root', 'root',
+
+const db = new Sequelize(
+  'ascend-db', 'root', 'root',
   {
-    dialect: 'mysql'
-  }
+    dialect: 'mysql',
+  },
 );
 
 db
@@ -10,48 +12,22 @@ db
   .then(() => {
     console.log('Connection has been established successfully.');
   })
-  .catch(err => {
+  .catch((err) => {
     console.error('Unable to connect to the database:', err);
   });
 
-//Models
+// Models
 const User = require('./models/User').User(db, Sequelize);
 const Review = require('./models/Review').Review(db, Sequelize);
 const Site = require('./models/Site').Site(db, Sequelize);
 
-//Relationships
+// Relationships
 User.hasMany(Review);
 Review.belongsTo(User);
 Site.hasMany(Review);
 Review.belongsTo(Site);
 
 module.exports = db;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // _.times(10, () => {
