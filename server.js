@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve('./dist/index.html'));
 });
 
+// handle client side routing
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('./dist/index.html'));
 });

@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: [
     'webpack-hot-middleware/client',
-    './client/index.jsx',
+    './client/index.js',
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -17,11 +17,18 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?$/,
+        test: /\.js[x]?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
       },
     ],
+    // rules: [
+    //   {
+    //     test: /\.(graphql|gql)$/,
+    //     exclude: /node_modules/,
+    //     loader: 'graphql-tag/loader',
+    //   },
+    // ],
   },
   devServer: {
     historyApiFallback: true,
