@@ -6,6 +6,7 @@ const config = require('./webpack.config.js');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const graphqlHTTP = require('express-graphql');
+const db = require('./server/db/models/');
 const schema = require('./server/schema.js');
 
 const PORT = 8080;
@@ -36,6 +37,8 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve('./dist/index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`App is listening on port ${PORT}`);
+db.sequelize.sync().then(() => {
+  app.listen(PORT, () => {
+    console.log(`App is listening on port ${PORT}`);
+  });
 });

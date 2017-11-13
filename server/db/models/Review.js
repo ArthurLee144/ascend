@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Review = sequelize.define('review', {
+  const Review = sequelize.define('Review', {
     rating: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     Review.belongsTo(models.User, {
       foreignKey: 'userId',
     });
-    // Review.belongsTo(models.Site, {
-    //   foreignKey: 'siteId',
-    // });
+    Review.belongsTo(models.Site, {
+      foreignKey: 'siteId',
+    });
   };
   return Review;
 };
