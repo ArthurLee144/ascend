@@ -7,7 +7,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 const graphqlHTTP = require('express-graphql');
 const db = require('./server/db/models/');
-const schema = require('./server/schema.js');
+const schema = require('./server/schemas/');
 
 const PORT = 8080;
 const app = express();

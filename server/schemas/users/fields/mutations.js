@@ -1,0 +1,69 @@
+const {
+  GraphQLString,
+  GraphQLInt,
+} = require('graphql');
+
+const UserType = require('../type');
+
+const {
+  createUser,
+  updateUser,
+  removeUser,
+} = require('../resolvers');
+
+module.exports.userCreate = {
+  type: UserType,
+  args: {
+    username: {
+      name: 'username',
+      type: GraphQLString,
+    },
+    password: {
+      name: 'password',
+      type: GraphQLString,
+    },
+    email: {
+      name: 'email',
+      type: GraphQLString,
+    },
+  },
+  resolve: createUser,
+};
+
+module.exports.userUpdate = {
+  type: UserType,
+  args: {
+    firstName: {
+      name: 'first name',
+      type: GraphQLString,
+    },
+    lastName: {
+      name: 'last name',
+      type: GraphQLString,
+    },
+    email: {
+      name: 'email',
+      type: GraphQLString,
+    },
+    city: {
+      name: 'city',
+      type: GraphQLString,
+    },
+    state: {
+      name: 'state',
+      type: GraphQLString,
+    },
+  },
+  resolve: updateUser,
+};
+
+module.exports.userRemove = {
+  type: UserType,
+  args: {
+    id: {
+      name: 'id',
+      type: GraphQLInt,
+    },
+  },
+  resolve: removeUser,
+};

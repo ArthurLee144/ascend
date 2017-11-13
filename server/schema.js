@@ -5,7 +5,7 @@ const {
   GraphQLSchema,
   GraphQLList,
 } = require('graphql');
-const db = require('./db/config');
+const db = require('./db/models/');
 
 // user type
 const User = new GraphQLObjectType({
@@ -20,7 +20,6 @@ const User = new GraphQLObjectType({
     email: { type: GraphQLString },
     city: { type: GraphQLString },
     state: { type: GraphQLString },
-    avatar: { type: GraphQLString },
     reviews: {
       type: new GraphQLList(Review),
       resolve(user) {
@@ -66,60 +65,60 @@ const Site = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    user: {
+    getUser: {
       type: User,
       args: {
         id: { type: GraphQLInt },
       },
       resolve(parentValue, args) {
-        return db.models.user.findOne({ where: args });
+        return db.models.User.findOne({ where: args });
       },
     },
-    users: {
+    allUsers: {
       type: new GraphQLList(User),
-      resolve(parentValue, args) {
-        return db.models.user.findAll({});
+      resolve() {
+        return db.models.User.findAll({});
       },
     },
-    review: {
-      type: Review,
-      args: {
-        id: { type: GraphQLInt },
-        userId: { type: GraphQLInt },
-        siteId: { type: GraphQLInt },
-      },
-      resolve(parentValue, args) {
-        return db.models.review.findOne({ where: args });
-      },
-    },
-    reviews: {
-      type: new GraphQLList(Review),
-      resolve(parentValue, args) {
-        return db.models.review.findAll({});
-      },
-    },
-    site: {
-      type: Site,
-      args: {
-        id: { type: GraphQLInt },
-      },
-      resolve(parentValue, args) {
-        return db.models.site.findOne({ where: args });
-      },
-    },
-    sites: {
-      type: new GraphQLList(Site),
-      resolve(parentValue, args) {
-        return db.models.site.findAll({});
-      },
-    },
+    // getReview: {
+    //   type: Review,
+    //   args: {
+    //     id: { type: GraphQLInt },
+    //     userId: { type: GraphQLInt },
+    //     siteId: { type: GraphQLInt },
+    //   },
+    //   resolve(parentValue, args) {
+    //     return db.models.Review.findOne({ where: args });
+    //   },
+    // },
+    // allReviews: {
+    //   type: new GraphQLList(Review),
+    //   resolve(parentValue, args) {
+    //     return db.models.Review.findAll({});
+    //   },
+    // },
+    // getSite: {
+    //   type: Site,
+    //   args: {
+    //     id: { type: GraphQLInt },
+    //   },
+    //   resolve(parentValue, args) {
+    //     return db.models.Site.findOne({ where: args });
+    //   },
+    // },
+    // AllSites: {
+    //   type: new GraphQLList(Site),
+    //   resolve(parentValue, args) {
+    //     return db.models.Site.findAll({});
+    //   },
+    // },
   },
 });
 
 const RootMutation = new GraphQLObjectType({
   name: 'RootMutationType',
   fields: {
-    addUser: {
+    createUser: {
       type: User,
       args: {
         facebook_id: { type: GraphQLString },
@@ -148,7 +147,7 @@ const RootMutation = new GraphQLObjectType({
           .then(res => res.data);
       },
     },
-    editUser: {
+    updateUser: {
       type: User,
       args: {
         id: { type: GraphQLInt },
@@ -173,18 +172,6 @@ const RootMutation = new GraphQLObjectType({
           city: args.city,
           state: args.state,
           avatar: args.avatar,
-        })
-          .then(res => res.data);
-      },
-    },
-    deleteUser: {
-      type: User,
-      args: {
-        id: { type: GraphQLInt },
-      },
-      resolve(parentValue, args) {
-        return db.models.user.delete({
-
         })
           .then(res => res.data);
       },
