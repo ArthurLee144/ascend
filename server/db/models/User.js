@@ -1,5 +1,5 @@
-module.exports.User = (db, DataTypes) => {
-  const User = db.define('user', {
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('user', {
     facebook_id: {
       type: DataTypes.STRING,
       allowNull: true,
@@ -42,5 +42,8 @@ module.exports.User = (db, DataTypes) => {
       allowNull: true,
     },
   });
+  User.associate = (models) => {
+    User.hasMany(models.Review);
+  };
   return User;
 };

@@ -1,5 +1,5 @@
-module.exports.Site = (db, DataTypes) => {
-  const Site = db.define('site', {
+module.exports = (sequelize, DataTypes) => {
+  const Site = sequelize.define('site', {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -17,14 +17,19 @@ module.exports.Site = (db, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    zip_code: {
+    zipCode: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    review_count: {
+    reviewCount: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   });
+  Site.associate = (models) => {
+    Site.hasMany(models.Review, {
+      foreignKey: 'siteId',
+    });
+  };
   return Site;
 };

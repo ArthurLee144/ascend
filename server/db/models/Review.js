@@ -1,5 +1,5 @@
-module.exports.Review = (db, DataTypes) => {
-  const Review = db.define('review', {
+module.exports = (sequelize, DataTypes) => {
+  const Review = sequelize.define('review', {
     rating: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -13,5 +13,13 @@ module.exports.Review = (db, DataTypes) => {
       allowNull: false,
     },
   });
+  Review.associate = (models) => {
+    Review.belongsTo(models.User, {
+      foreignKey: 'userId',
+    });
+    // Review.belongsTo(models.Site, {
+    //   foreignKey: 'siteId',
+    // });
+  };
   return Review;
 };
