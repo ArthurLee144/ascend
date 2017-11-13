@@ -6,7 +6,7 @@ const {
 
 const UserType = new GraphQLObjectType({
   name: 'user',
-  description: '',
+  description: '...',
 
   fields: () => ({
     id: { type: GraphQLInt },
