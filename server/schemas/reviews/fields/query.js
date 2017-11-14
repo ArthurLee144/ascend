@@ -10,12 +10,12 @@ const {
   getReviewByID,
 } = '../resolvers';
 
-module.exports.sites = {
+module.exports.reviews = {
   type: new GraphQLList(ReviewType),
   resolve: getAllReviews,
 };
 
-module.exports.site = {
+module.exports.review = {
   type: ReviewType,
   args: {
     id: { type: GraphQLInt },

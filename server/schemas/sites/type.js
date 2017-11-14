@@ -6,7 +6,7 @@ const {
 
 const SiteType = new GraphQLObjectType({
   name: 'site',
-  description: '...',
+  description: 'Site type',
 
   fields: () => ({
     id: { type: GraphQLInt },
@@ -16,6 +16,8 @@ const SiteType = new GraphQLObjectType({
     state: { type: GraphQLString },
     zipCode: { type: GraphQLString },
     reviewCount: { type: GraphQLInt },
+    createdAt: { type: GraphQLString },
+    updatedAt: { type: GraphQLString },
   }),
 });
 
