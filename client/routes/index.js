@@ -11,20 +11,20 @@ import Main from './Main';
 import Create from './Create';
 import Profile from './Profile';
 import Details from './Details';
-import Results from './Results';
+import Search from './Search';
 import Review from './Review';
 
 export default () => (
   <Router>
     <Switch>
       <Route exact path="/" component={Main} />
-      <Route path="/create" component={Create} />
+      <Route path="/createasite" component={Create} />
       <Route path="/profile" component={Profile} />
       <Route path="/landing" component={Landing} />
       <Route path="/login" component={Login} />
       <Route path="/details" component={Details} />
-      <Route path="/results" component={Results} />
-      <Route path="/review" component={Review} />
+      <Route path="/search" component={Search} />
+      <Route path="/writeareview" component={Review} />
       <Route render={() => <p>Not Found</p>} />
     </Switch>
   </Router>
