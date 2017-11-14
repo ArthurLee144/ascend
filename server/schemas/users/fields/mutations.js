@@ -45,14 +45,6 @@ module.exports.userUpdate = {
       name: 'email',
       type: GraphQLString,
     },
-    city: {
-      name: 'city',
-      type: GraphQLString,
-    },
-    state: {
-      name: 'state',
-      type: GraphQLString,
-    },
   },
   resolve: updateUser,
 };

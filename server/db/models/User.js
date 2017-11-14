@@ -1,9 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
-    facebook_id: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -28,14 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         isEmail: true,
       },
-    },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    state: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
   });
   User.associate = (models) => {

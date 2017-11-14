@@ -17,14 +17,12 @@ module.exports = async function createUser(parentValue, { username, password, em
 };
 
 module.exports = async function updateUser(parentValue, {
-  firstName, lastName, email, city, state,
+  firstName, lastName, email,
 }) {
   await models.User.update({
     firstName,
     lastName,
     email,
-    city,
-    state,
   });
 };
 
