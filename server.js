@@ -1,11 +1,11 @@
 require('dotenv').config();
 const path = require('path');
 const express = require('express');
+const graphqlHTTP = require('express-graphql');
 const webpack = require('webpack');
-const config = require('./webpack.config.js');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const graphqlHTTP = require('express-graphql');
+const config = require('./webpack.config.js');
 const db = require('./server/db/models/');
 const schema = require('./server/schemas/');
 
@@ -16,8 +16,12 @@ const app = express();
 const compiler = webpack(config);
 app.use(webpackDevMiddleware(compiler, {
   publicPath: config.output.publicPath,
+  noInfo: true,
   hot: true,
   historyApiFallback: true,
+  stats: {
+    colors: true,
+  },
 }));
 app.use(webpackHotMiddleware(compiler));
 

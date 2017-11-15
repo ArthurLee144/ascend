@@ -3,14 +3,13 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: [
-    'webpack-hot-middleware/client',
+    'webpack-hot-middleware/client?reload=true',
     './client/index.js',
   ],
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
-  },
+  // development
+  devtool: 'inline-source-map',
+  // production
+  // devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
@@ -18,24 +17,19 @@ module.exports = {
     loaders: [
       {
         test: /\.js[x]?$/,
-        loader: 'babel-loader',
+        loader: ['babel-loader'],
         exclude: /node_modules/,
       },
     ],
-    // rules: [
-    //   {
-    //     test: /\.(graphql|gql)$/,
-    //     exclude: /node_modules/,
-    //     loader: 'graphql-tag/loader',
-    //   },
-    // ],
-  },
-  devServer: {
-    historyApiFallback: true,
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ],
+  output: {
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js',
+    publicPath: '/',
+  },
 };
