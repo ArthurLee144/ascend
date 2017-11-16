@@ -21,9 +21,9 @@ sequelize
   });
 
 const db = {
-  User: sequelize.import('./User.js'),
-  Review: sequelize.import('./Review.js'),
-  Site: sequelize.import('./Site.js'),
+  User: sequelize.import('./User'),
+  Review: sequelize.import('./Review'),
+  Site: sequelize.import('./Site'),
 };
 
 Object.keys(db).forEach((modelName) => {
