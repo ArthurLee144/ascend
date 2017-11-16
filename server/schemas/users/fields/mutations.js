@@ -22,6 +22,14 @@ module.exports.userCreate = {
       name: 'password',
       type: GraphQLString,
     },
+    firstName: {
+      name: 'first name',
+      type: GraphQLString,
+    },
+    lastName: {
+      name: 'last name',
+      type: GraphQLString,
+    },
     email: {
       name: 'email',
       type: GraphQLString,

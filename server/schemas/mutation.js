@@ -7,11 +7,11 @@ const review = require('./reviews/fields/mutations');
 const mutation = new GraphQLObjectType({
   name: 'mutations',
   description: 'Mutation type',
-  fields: {
+  fields: () => ({
     ...user,
     ...site,
     ...review,
-  },
+  }),
 });
 
 module.exports = mutation;

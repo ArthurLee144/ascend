@@ -6,9 +6,9 @@ const {
 const UserType = require('../type');
 
 const {
+  getUserById,
   getAllUsers,
-  getUserByID,
-} = '../resolvers';
+} = require('../resolvers');
 
 module.exports.users = {
   type: new GraphQLList(UserType),
@@ -20,5 +20,5 @@ module.exports.user = {
   args: {
     id: { type: GraphQLInt },
   },
-  resolve: getUserByID,
+  resolve: getUserById,
 };
