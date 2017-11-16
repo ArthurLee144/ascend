@@ -1,5 +1,22 @@
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
-const Main = () => <h1>This is the Main page!</h1>;
+const allUsersQuery = gql`
+  {
+    users {
+      firstName
+      lastName
+    }
+  }
+`;
 
-export default Main;
+const Main = ({ data: { users = [] } }) =>
+  users.map(user =>
+    <h1 key={user.id}>{user.firstName} {user.lastName}</h1>);
+
+export default graphql(allUsersQuery)(Main);
+
+// const Main = () => <h1>This is the Main page!</h1>;
+//
+// export default Main;
