@@ -1,5 +1,5 @@
 # Ascend
----
+
 An outdoor bouldering site web application for climbers to rate and review local bouldering sites.
 
 API built with Node + Express + GraphQL + Sequelize/MySQL.
