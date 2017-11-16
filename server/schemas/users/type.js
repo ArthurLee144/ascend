@@ -4,7 +4,7 @@ const {
   GraphQLInt,
   GraphQLList,
 } = require('graphql');
-const ReviewType = require('../reviews/type');
+// const ReviewType = require('../reviews/type');
 
 const UserType = new GraphQLObjectType({
   name: 'user',
@@ -13,15 +13,16 @@ const UserType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLInt },
     username: { type: GraphQLString },
+    password: { type: GraphQLString },
     firstName: { type: GraphQLString },
     lastName: { type: GraphQLString },
     email: { type: GraphQLString },
-    reviews: {
-      type: new GraphQLList(ReviewType),
-      resolve(user) {
-        return user.getReviews();
-      },
-    },
+    // reviews: {
+    //   type: new GraphQLList(ReviewType),
+    //   resolve(user) {
+    //     return user.getReviews();
+    //   },
+    // },
     createdAt: { type: GraphQLString },
     updatedAt: { type: GraphQLString },
   }),
