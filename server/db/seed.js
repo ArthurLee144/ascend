@@ -10,6 +10,8 @@ const sequelize = new Sequelize(
   },
 );
 
+console.info('SETUP - Connecting database...');
+
 sequelize
   .authenticate()
   .then(() => {
