@@ -1,33 +1,19 @@
 const models = require('../../db/models');
 
-module.exports = async function getReviewByID(parentValue, { id }) {
-  await models.Review.findOne({ where: { id } });
-};
+module.exports.getReviewByID = (parentValue, { id }) => models.Review.findOne({ where: { id } });
 
-module.exports = async function getAllReviews() {
-  await models.Review.findAll();
-};
+module.exports.getAllReviews = () => models.Review.findAll();
 
-module.exports = async function createReview(parentValue, {
+module.exports.createReview = (parentValue, {
   rating, title, text,
-}) {
-  await models.Review.create({
-    rating,
-    title,
-    text,
-  });
-};
-
-module.exports = async function updateReview(parentValue, {
+}) => models.Review.create({
   rating, title, text,
-}) {
-  await models.Review.create({
-    rating,
-    title,
-    text,
-  });
-};
+});
 
-module.exports = async function removeReview(parentValue, { id }) {
-  await models.Review.destroy({ where: { id } });
-};
+module.exports.updateReview = (parentValue, {
+  rating, title, text,
+}) => models.Review.create({
+  rating, title, text,
+});
+
+module.exports.removeReview = (parentValue, { id }) => models.Review.destroy({ where: { id } });

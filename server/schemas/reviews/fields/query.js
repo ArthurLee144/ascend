@@ -8,7 +8,7 @@ const ReviewType = require('../type');
 const {
   getAllReviews,
   getReviewByID,
-} = '../resolvers';
+} = require('../resolvers');
 
 module.exports.reviews = {
   type: new GraphQLList(ReviewType),
