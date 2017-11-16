@@ -8,7 +8,7 @@ const SiteType = require('../type');
 const {
   getAllSites,
   getSiteByID,
-} = '../resolvers';
+} = require('../resolvers');
 
 module.exports.sites = {
   type: new GraphQLList(SiteType),
