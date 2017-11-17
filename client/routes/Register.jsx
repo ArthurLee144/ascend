@@ -31,18 +31,16 @@ class Register extends Component {
   }
 
   onSubmit() {
-    console.log(this.state);
     const { username, password, email } = this.state;
-    console.log('username: ', username);
-    console.log('password: ', password);
-    console.log('email: ', email);
     this.props.mutate({
       variables: { username, password, email },
     })
       .then(({ data }) => {
+        // Direct user to another page
         console.log('Got data', data);
       })
       .catch((error) => {
+        // Let user know username/email already exists or invalid
         console.log('There was an error sending the query', error);
       });
   }
