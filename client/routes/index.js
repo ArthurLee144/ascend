@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import Main from './Main';
-import Login from './Login';
+import Register from './Register';
 import Search from './Search';
 import Details from './Details';
 import Review from './Review';
@@ -17,7 +17,7 @@ export default () => (
   <Router>
     <Switch>
       <Route exact path="/" component={Main} />
-      <Route path="/login" component={Login} />
+      <Route path="/signup" component={Register} />
       <Route path="/search" component={Search} />
       <Route path="/details" component={Details} />
       <Route path="/writeareview" component={Review} />

@@ -5,15 +5,14 @@ import gql from 'graphql-tag';
 const allUsersQuery = gql`
   {
     users {
-      firstName
-      lastName
+      email
     }
   }
 `;
 
 const Main = ({ data: { users = [] } }) =>
   users.map(user =>
-    <h1 key={user.id}>{user.firstName} {user.lastName}</h1>);
+    <h1 key={user.id}>{user.email}</h1>);
 
 export default graphql(allUsersQuery)(Main);
 

@@ -6,11 +6,38 @@ const {
 const UserType = require('../type');
 
 const {
+  registerUser,
   createUser,
   updateUser,
   removeUser,
-  registerUser,
 } = require('../resolvers');
+
+module.exports.userRegister = {
+  type: UserType,
+  args: {
+    username: {
+      name: 'username',
+      type: GraphQLString,
+    },
+    password: {
+      name: 'password',
+      type: GraphQLString,
+    },
+    firstName: {
+      name: 'first name',
+      type: GraphQLString,
+    },
+    lastName: {
+      name: 'last name',
+      type: GraphQLString,
+    },
+    email: {
+      name: 'email',
+      type: GraphQLString,
+    },
+  },
+  resolve: registerUser,
+};
 
 module.exports.userCreate = {
   type: UserType,
@@ -67,31 +94,4 @@ module.exports.userRemove = {
     },
   },
   resolve: removeUser,
-};
-
-module.exports.userRegister = {
-  type: UserType,
-  args: {
-    username: {
-      name: 'username',
-      type: GraphQLString,
-    },
-    password: {
-      name: 'password',
-      type: GraphQLString,
-    },
-    firstName: {
-      name: 'first name',
-      type: GraphQLString,
-    },
-    lastName: {
-      name: 'last name',
-      type: GraphQLString,
-    },
-    email: {
-      name: 'email',
-      type: GraphQLString,
-    },
-  },
-  resolve: registerUser,
 };
