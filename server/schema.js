@@ -183,3 +183,5 @@ module.exports = new GraphQLSchema({
   query: RootQuery,
   mutation: RootMutation,
 });
+
+// Testing commit to branch 'graphql-tools'
