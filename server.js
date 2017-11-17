@@ -1,16 +1,16 @@
 require('dotenv').config();
-const path = require('path');
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const graphqlHTTP = require('express-graphql');
-const webpack = require('webpack');
-const webpackDevMiddleware = require('webpack-dev-middleware');
-const webpackHotMiddleware = require('webpack-hot-middleware');
-const config = require('./webpack.config.js');
-const db = require('./server/db/models/');
-const schema = require('./server/schemas/');
+import path from 'path';
+import express from 'express';
+import cors from 'cors';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import graphqlHttp from 'express-graphql';
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import config from './webpack.config';
+import db from './server/db/models/';
+import schema from './server/schemas/';
 
 const port = process.env.PORT;
 const app = express();
@@ -35,17 +35,12 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 // graphQL http server
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql', graphqlHttp({
   schema,
   graphiql: true,
   pretty: true,
 }));
 
-// app.get('/', (req, res) => {
-//   res.sendFile(path.resolve('./dist/index.html'));
-// });
-
-// handle client side routing
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('./dist/index.html'));
 });

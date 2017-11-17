@@ -3,7 +3,9 @@
     "plugins": ["react", "jsx-a11y", "import"],
     "rules": {
       "react/jsx-filename-extension": 0,
-      "no-console": 0
+      "no-console": 0,
+      "import/newline-after-import": 0,
+      "import/first": 0
     },
     "globals": {
       "document": 1
