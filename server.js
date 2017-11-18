@@ -4,7 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import graphqlHttp from 'express-graphql';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
@@ -35,11 +35,8 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 // graphQL http server
-app.use('/graphql', graphqlHttp({
-  schema,
-  graphiql: true,
-  pretty: true,
-}));
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('./dist/index.html'));
