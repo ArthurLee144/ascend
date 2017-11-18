@@ -4,13 +4,22 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack.config';
 import db from './server/db/models/';
-import schema from './server/schema/';
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
+import { makeExecutableSchema } from 'graphql-tools';
+import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
+
+const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './server/schemas')));
+const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './server/resolvers')));
+
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers,
+});
 
 const port = process.env.PORT;
 const app = express();
