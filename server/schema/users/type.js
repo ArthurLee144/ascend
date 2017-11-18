@@ -2,7 +2,7 @@ const {
   GraphQLObjectType,
   GraphQLString,
   GraphQLInt,
-  GraphQLList,
+  // GraphQLList,
 } = require('graphql');
 // const ReviewType = require('../reviews/type');
 
