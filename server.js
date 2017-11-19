@@ -8,7 +8,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from './webpack.config';
-import db from './server/db/models/';
+import models from './server/db/models/';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import { fileLoader, mergeTypes, mergeResolvers } from 'merge-graphql-schemas';
@@ -44,14 +44,26 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 // graphQL http server
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphql', bodyParser.json(), graphqlExpress({
+  schema,
+  context: {
+    models,
+    user: {
+      id: 1,
+    },
+  },
+}));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.resolve('./dist/index.html'));
+});
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('./dist/index.html'));
 });
 
-db.sequelize.sync({}).then(() => {
+models.sequelize.sync({}).then(() => {
   console.info('INFO - Database sync complete.');
   console.info('SETUP - Starting server...');
   app.listen(port, (error) => {

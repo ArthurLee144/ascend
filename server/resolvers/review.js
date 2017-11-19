@@ -9,8 +9,8 @@ export default {
   Mutation: {
     createReview: (parent, {
       rating, title, text,
-    }) => models.Review.create({
-      rating, title, text,
+    }, { user }) => models.Review.create({
+      rating, title, text, userId: user.id,
     }),
     updateReview: (parent, {
       rating, title, text,

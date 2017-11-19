@@ -9,8 +9,8 @@ export default {
   Mutation: {
     createSite: (parent, {
       name, address, city, state, zipCode,
-    }) => models.Site.create({
-      name, address, city, state, zipCode,
+    }, { user }) => models.Site.create({
+      name, address, city, state, zipCode, userId: user.id,
     }),
     updateSite: (parent, {
       name, address, city, state, zipCode,

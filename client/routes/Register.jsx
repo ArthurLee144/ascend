@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
+  Message,
   Button,
   Input,
   Container,
@@ -15,8 +16,11 @@ class Register extends Component {
 
     this.state = {
       username: '',
+      usernameError: '',
       email: '',
+      emailError: '',
       password: '',
+      passwordError: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -31,13 +35,27 @@ class Register extends Component {
   }
 
   onSubmit() {
+    this.setState({
+      usernameError: '',
+      emailError: '',
+      passwordError: '',
+    });
     const { username, password, email } = this.state;
     this.props.mutate({
       variables: { username, password, email },
     })
       .then(({ data }) => {
-        // Direct user to another page
         console.log('Got data', data);
+        const { ok, errors } = data.registerUser;
+        if (ok) {
+          this.context.history.push('/');
+        } else {
+          const err = {};
+          errors.forEach(({ path, message }) => {
+            err[`${path}Error`] = message;
+          });
+          this.setState(err);
+        }
       })
       .catch((error) => {
         // Let user know username/email already exists or invalid
@@ -46,11 +64,24 @@ class Register extends Component {
   }
 
   render() {
-    const { username, email, password } = this.state;
+    const {
+      username, email, password, usernameError, emailError, passwordError,
+    } = this.state;
+    const errorList = [];
+    if (usernameError) {
+      errorList.push(usernameError);
+    }
+    if (emailError) {
+      errorList.push(emailError);
+    }
+    if (passwordError) {
+      errorList.push(passwordError);
+    }
     return (
       <Container text>
         <Header as="h2">Sign Up</Header>
         <Input
+          error={!!usernameError}
           name="username"
           onChange={this.onChange}
           value={username}
@@ -58,6 +89,7 @@ class Register extends Component {
           fluid
         />
         <Input
+          error={!!emailError}
           name="email"
           onChange={this.onChange}
           value={email}
@@ -65,6 +97,7 @@ class Register extends Component {
           fluid
         />
         <Input
+          error={!!passwordError}
           name="password"
           onChange={this.onChange}
           value={password}
@@ -73,6 +106,9 @@ class Register extends Component {
           fluid
         />
         <Button onClick={this.onSubmit}>Submit</Button>
+        {usernameError || emailError || passwordError ? (
+          <Message error header="There was some errors with your submission" list={errorList} />
+        ) : null}
       </Container>
     );
   }
@@ -80,8 +116,12 @@ class Register extends Component {
 
 const registerMutation = gql`
   mutation ($username: String!, $password: String!, $email: String!) {
-    userRegister(username: $username, password: $password, email: $email) {
-      id
+    registerUser(username: $username, password: $password, email: $email){
+      ok
+      errors {
+        path
+        message
+      }
     }
   }
 `;
