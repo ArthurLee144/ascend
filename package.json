@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:server": "TEST_DB=test_ascend_db nodemon --exec babel-node server.js --ignore client",
+    "test:server": "TEST_DB=test_ascend_db babel-node server.js --ignore client",
     "start": "nodemon --exec babel-node server.js --ignore client",
     "json:server": "json-server --watch ./server/data.json",
     "build": "webpack --config webpack.config.js",

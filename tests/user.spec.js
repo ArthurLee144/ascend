@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+// TODO: Create function to reset database before & after running test
+// TODO: Create test to login, update, remove a user
+// TODO: Create test to create, update, remove a review
+// TODO: Create test to create, update, remove a site
+
 describe('User resolvers', () => {
   test('getAllUsers', async () => {
     const response = await axios.post('http://localhost:8080/graphql', {
@@ -17,43 +22,33 @@ describe('User resolvers', () => {
     const { data } = response;
     expect(data).toMatchObject({
       data: {
-        getAllUsers: [
-          {
-            id: 1,
-            username: 'francisngo',
-            email: 'francisngo@ascend.com',
-          },
-          {
-            id: 2,
-            username: 'billyboy',
-            email: 'billyboy@ascend.com',
-          },
-          {
-            id: 3,
-            username: 'redranger5',
-            email: 'jasonleescott@ascend.com',
-          },
-          {
-            id: 4,
-            username: 'erqweqwe',
-            email: 'qweqwe@ascend.com',
-          },
-          {
-            id: 7,
-            username: 'greenranger6',
-            email: 'tommyoliver@ascend.com',
-          },
-          {
-            id: 9,
-            username: 'blueranger5',
-            email: 'billycranston@ascend.com',
-          },
-          {
-            id: 10,
-            username: 'pinkranger5',
-            email: 'kimberlyhart@ascend.com',
-          },
-        ],
+        getAllUsers: [],
+      },
+    });
+  });
+
+  test('register user', async () => {
+    const response = await axios.post('http://localhost:8080/graphql', {
+      query: `
+        mutation {
+          registerUser(username: "testuser", email: "testuser@ascend.com", password: "testuser123") {
+            ok
+            errors {
+              path
+              message
+            }
+          }
+        }
+      `,
+    });
+
+    const { data } = response;
+    expect(data).toMatchObject({
+      data: {
+        registerUser: {
+          ok: true,
+          errors: null,
+        },
       },
     });
   });

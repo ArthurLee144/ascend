@@ -16,7 +16,11 @@ console.info('SETUP - Connecting database...');
 sequelize
   .authenticate()
   .then(() => {
-    console.log('INFO - Database connected.');
+    if (process.env.TEST_DB) {
+      console.info('INFO - Connected to TESTING Database.');
+    } else {
+      console.info('INFO - Database connected.');
+    }
   })
   .catch((err) => {
     console.error('ERROR - Unable to connect to the database', err);
