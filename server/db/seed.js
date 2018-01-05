@@ -21,5 +21,4 @@ sequelize
     console.error('ERROR - Unable to connect to the database', err);
   });
 
-sequelize.sync({ force: true }).then(() => {
-});
+sequelize.sync({ force: true });

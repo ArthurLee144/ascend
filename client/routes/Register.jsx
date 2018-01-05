@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  Message,
-  Button,
-  Input,
-  Container,
-  Header,
-} from 'semantic-ui-react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 

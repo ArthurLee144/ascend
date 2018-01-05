@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import Sequelize from 'sequelize';
 
 // TODO: Create function to reset database before & after running test
 // TODO: Create test to login, update, remove a user
