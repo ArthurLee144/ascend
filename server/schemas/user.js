@@ -6,6 +6,7 @@ export default `
     lastName: String!
     email: String!
     reviews: [Review!]!
+    reviewCount: Int!
     createdAt: String!
     updatedAt: String!
   }
