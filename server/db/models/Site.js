@@ -21,6 +21,10 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     reviewCount: {
       type: DataTypes.INTEGER,
       allowNull: false,
