@@ -14,21 +14,17 @@ export default class Create extends Component {
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
-                {/* <div className="navbar-brand" href="../">
+                <div className="navbar-brand" href="../">
                   <span className="navbar-burger burger" data-target="navbarMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <span />
+                    <span />
+                    <span />
                   </span>
-                </div> */}
+                </div>
                 <div id="navbarMenu" className="navbar-menu">
                   <div className="navbar-end">
-                    <a className="navbar-item">
-                      <Link to="/createasite">Create A Site</Link>
-                    </a>
-                    <a className="navbar-item">
-                      <Link to="/profile">My Account</Link>
-                    </a>
+                    <Link className="navbar-item" to="/createasite">Create A Site</Link>
+                    <Link className="navbar-item" to="/profile">My Account</Link>
                   </div>
                 </div>
               </div>
@@ -51,36 +47,42 @@ export default class Create extends Component {
               </div>
             </section>
             <div className="card article">
-              <div class="card-content">
+              <div className="card-content">
                 <form>
                   <div className="field">
                     <label className="label">Name</label>
                     <div className="control">
-                      <input className="input" type="text" placeholder="Text input" />
+                      <input className="input" type="text" placeholder="Name" />
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Address</label>
                     <div className="control">
-                      <input className="input" type="text" placeholder="Text input" />
+                      <input className="input" type="text" placeholder="Address" />
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">City</label>
                     <div className="control">
-                      <input className="input" type="text" placeholder="Text input" />
+                      <input className="input" type="text" placeholder="City" />
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">State</label>
                     <div className="control">
-                      <input className="input" type="text" placeholder="Text input" />
+                      <input className="input" type="text" placeholder="State" />
                     </div>
                   </div>
                   <div className="field">
                     <label className="label">Zip Code</label>
                     <div className="control">
-                      <input className="input" type="text" placeholder="Text input" />
+                      <input className="input" type="text" placeholder="Zip Code" />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <div className="control">
+                      <label className="label">Description</label>
+                      <textarea className="textarea" placeholder="Description" />
                     </div>
                   </div>
                   <div className="control">
