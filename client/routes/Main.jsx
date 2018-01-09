@@ -31,21 +31,17 @@ export default class App extends Component {
           <div className="hero-head">
             <nav className="navbar">
               <div className="container">
-                {/* <div className="navbar-brand" href="../">
+                <div className="navbar-brand">
                   <span className="navbar-burger burger" data-target="navbarMenu">
                     <span></span>
                     <span></span>
                     <span></span>
                   </span>
-                </div> */}
+                </div>
                 <div id="navbarMenu" className="navbar-menu">
                   <div className="navbar-end">
-                    <a className="navbar-item">
-                      <Link to="/createasite">Create A Site</Link>
-                    </a>
-                    <a className="navbar-item">
-                      <Link to="/profile">My Account</Link>
-                    </a>
+                    <Link className="navbar-item is-active" to="/createasite">Create A Site</Link>
+                    <Link className="navbar-item" to="/profile">My Account</Link>
                   </div>
                 </div>
               </div>
@@ -70,8 +66,9 @@ export default class App extends Component {
         </div>
 
         <section className="container">
-          <div className="columns features">
-            <div className="column is-3">
+          <div className="columns is-multiline">
+
+            <div className="column is-one-quarter">
               <div className="card">
                 <div className="card-image has-text-centered">
                   <i className="fa fa-camera" />
@@ -86,7 +83,7 @@ export default class App extends Component {
               </div>
             </div>
 
-            <div className="column is-3">
+            <div className="column is-one-quarter">
               <div className="card">
                 <div className="card-image has-text-centered">
                   <i className="fa fa-camera" />
@@ -101,7 +98,7 @@ export default class App extends Component {
               </div>
             </div>
 
-            <div className="column is-3">
+            <div className="column is-one-quarter">
               <div className="card">
                 <div className="card-image has-text-centered">
                   <i className="fa fa-camera" />
@@ -116,7 +113,67 @@ export default class App extends Component {
               </div>
             </div>
 
-            <div className="column is-3">
+            <div className="column is-one-quarter">
+              <div className="card">
+                <div className="card-image has-text-centered">
+                  <i className="fa fa-camera" />
+                </div>
+                <div className="card-content">
+                  <div className="content">
+                    <h4>Tristique senectus et netus et. </h4>
+                    <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                    <p><a href="#">Learn more</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-one-quarter">
+              <div className="card">
+                <div className="card-image has-text-centered">
+                  <i className="fa fa-camera" />
+                </div>
+                <div className="card-content">
+                  <div className="content">
+                    <h4>Tristique senectus et netus et. </h4>
+                    <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                    <p><a href="#">Learn more</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-one-quarter">
+              <div className="card">
+                <div className="card-image has-text-centered">
+                  <i className="fa fa-camera" />
+                </div>
+                <div className="card-content">
+                  <div className="content">
+                    <h4>Tristique senectus et netus et. </h4>
+                    <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                    <p><a href="#">Learn more</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-one-quarter">
+              <div className="card">
+                <div className="card-image has-text-centered">
+                  <i className="fa fa-camera" />
+                </div>
+                <div className="card-content">
+                  <div className="content">
+                    <h4>Tristique senectus et netus et. </h4>
+                    <p>Purus semper eget duis at tellus at urna condimentum mattis. Non blandit massa enim nec. Integer enim neque volutpat ac tincidunt vitae semper quis. Accumsan tortor posuere ac ut consequat semper viverra nam.</p>
+                    <p><a href="#">Learn more</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="column is-one-quarter">
               <div className="card">
                 <div className="card-image has-text-centered">
                   <i className="fa fa-camera" />
