@@ -1,3 +1,13 @@
+/*
+GraphQL type schema RegisterResponse;
+ok will either be T/F,
+user will return the User,
+and error will return an error type (schema)
+
+Mutation - registeruser returns the result of RegisterResponse
+If it is 'ok' we will get a user that is not null and the errors will be null
+*/
+
 export default `
   type User {
     id: Int!
