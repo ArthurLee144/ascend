@@ -8,14 +8,14 @@ export default {
 
   Mutation: {
     createSite: (parent, {
-      name, address, city, state, zipCode,
+      name, address, city, state, zipCode, description,
     }, { user }) => models.Site.create({
-      name, address, city, state, zipCode, userId: user.id,
+      name, address, city, state, zipCode, description, userId: user.id,
     }),
     updateSite: (parent, {
-      name, address, city, state, zipCode,
+      name, address, city, state, zipCode, description,
     }) => models.Site.update({
-      name, address, city, state, zipCode,
+      name, address, city, state, zipCode, description,
     }),
     removeSite: (parent, { id }) => models.Site.destroy({ where: { id } }),
   },

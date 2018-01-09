@@ -6,6 +6,7 @@ export default `
     city: String!
     state: String!
     zipCode: String!
+    description: String!
     reviewCount: Int!
     reviews: [Review!]!
     createdAt: String!
@@ -18,8 +19,8 @@ export default `
   }
 
   type Mutation {
-    createSite(name: String!, address: String!, city: String!, state: String!, zipCode: String!): Boolean!
-    updateSite(name: String!, address: String!, city: String!, state: String!, zipCode: String!): Boolean!
+    createSite(name: String!, address: String!, city: String!, state: String!, zipCode: String!, description: String!): Boolean!
+    updateSite(name: String!, address: String!, city: String!, state: String!, zipCode: String!, description: String!): Boolean!
     removeSite(id: Int!): Boolean!
   }
 `;
