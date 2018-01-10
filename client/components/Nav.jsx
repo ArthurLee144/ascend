@@ -1,24 +1,48 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavLink,
+  NavItem,
+} from 'reactstrap';
 
-const Nav = () => (
-  <ul className="nav">
-    <li>
-      <NavLink exact activeClassName="active" to="/">
-        Home
-      </NavLink>
-    </li>
-    <li>
-      <NavLink activeClassName="active" to="/create">
-        Create A Site
-      </NavLink>
-    </li>
-    <li>
-      <NavLink activeClassName="active" to="/profile">
-        My Account
-      </NavLink>
-    </li>
-  </ul>
-);
+export default class TopNav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+    };
+    this.toggle = this.toggle.bind(this);
+  }
 
-export default Nav;
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <Navbar color="faded" light expand="md">
+          <NavbarBrand href="/">Ascend</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink tag={Link} to="/createasite">Create A Site</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to="/profile">My Account</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
+    );
+  }
+}
