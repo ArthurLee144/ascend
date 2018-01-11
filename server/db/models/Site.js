@@ -5,11 +5,7 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-    address: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    city: {
+    location: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -17,17 +13,13 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    zipCode: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     reviewCount: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   });
   Site.associate = (models) => {
