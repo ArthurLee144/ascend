@@ -26,14 +26,8 @@ export default `
     getAllUsers: [User!]!
   }
 
-  type RegisterResponse {
-    ok: Boolean!
-    user: User
-    errors: [Error!]
-  }
-
   type Mutation {
-    registerUser(username: String!, email: String!, password: String!): RegisterResponse!
+    registerUser(username: String!, email: String!, password: String!): Boolean!
     updateUser(firstName: String!, lastName: String!, email: String!): User!
     removeUser(id: Int!): Boolean!
   }

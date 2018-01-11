@@ -1,4 +1,14 @@
 import React, { Component } from 'react';
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Button,
+} from 'reactstrap';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -9,11 +19,8 @@ class Register extends Component {
 
     this.state = {
       username: '',
-      usernameError: '',
-      email: '',
-      emailError: '',
       password: '',
-      passwordError: '',
+      email: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -28,94 +35,49 @@ class Register extends Component {
   }
 
   onSubmit() {
-    this.setState({
-      usernameError: '',
-      emailError: '',
-      passwordError: '',
-    });
     const { username, password, email } = this.state;
     this.props.mutate({
       variables: { username, password, email },
     })
-      .then(({ data }) => {
-        console.log('Got data', data);
-        const { ok, errors } = data.registerUser;
-        if (ok) {
-          this.context.history.push('/');
-        } else {
-          const err = {};
-          errors.forEach(({ path, message }) => {
-            err[`${path}Error`] = message;
-          });
-          this.setState(err);
-        }
+      .then(() => {
+        this.props.history.push('/');
       })
       .catch((error) => {
-        // Let user know username/email already exists or invalid
         console.log('There was an error sending the query', error);
       });
   }
 
   render() {
     const {
-      username, email, password, usernameError, emailError, passwordError,
+      username, email, password,
     } = this.state;
-    const errorList = [];
-    if (usernameError) {
-      errorList.push(usernameError);
-    }
-    if (emailError) {
-      errorList.push(emailError);
-    }
-    if (passwordError) {
-      errorList.push(passwordError);
-    }
     return (
-      <Container text>
-        <Header as="h2">Sign Up</Header>
-        <Input
-          error={!!usernameError}
-          name="username"
-          onChange={this.onChange}
-          value={username}
-          placeholder="Username"
-          fluid
-        />
-        <Input
-          error={!!emailError}
-          name="email"
-          onChange={this.onChange}
-          value={email}
-          placeholder="Email"
-          fluid
-        />
-        <Input
-          error={!!passwordError}
-          name="password"
-          onChange={this.onChange}
-          value={password}
-          type="password"
-          placeholder="Password"
-          fluid
-        />
-        <Button onClick={this.onSubmit}>Submit</Button>
-        {usernameError || emailError || passwordError ? (
-          <Message error header="There was some errors with your submission" list={errorList} />
-        ) : null}
-      </Container>
+      <div>
+        <Container>
+          <Form>
+            <FormGroup>
+              <Label for="email">Email</Label>
+              <Input type="text" name="email" placeholder="Email" onChange={this.onChange} value={email} />
+            </FormGroup>
+            <FormGroup>
+              <Label for="username">Username</Label>
+              <Input type="text" name="username" placeholder="Username" onChange={this.onChange} value={username} />
+            </FormGroup>
+            <FormGroup>
+              <Label for="password">Password</Label>
+              <Input type="password" name="password" placeholder="Password" onChange={this.onChange} value={password} />
+            </FormGroup>
+            <Button onClick={this.onSubmit}>Sign Up</Button>
+          </Form>
+        </Container>
+      </div>
     );
   }
 }
 
 const registerMutation = gql`
   mutation ($username: String!, $password: String!, $email: String!) {
-    registerUser(username: $username, password: $password, email: $email){
-      ok
-      errors {
-        path
-        message
-      }
-    }
+    registerUser(username: $username, password: $password, email: $email)
   }
 `;
 
