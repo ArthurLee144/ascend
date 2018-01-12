@@ -11,9 +11,40 @@ import {
   CardTitle,
   CardSubtitle,
   Button } from 'reactstrap';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import TopNav from '../components/Nav';
 
-export default class App extends Component {
+const allSitesQuery = gql`
+  {
+    getAllSites {
+      name
+      location
+      state
+      description
+      image
+    }
+  }
+`;
+
+const SitesList = ({ data: { getAllSites = [] } }) =>
+  getAllSites.map(site => (
+    <Col key={site.id} className="col-12 col-md-6 col-lg-4">
+      <Card>
+        <CardImg top width="100%" src={site.image} alt="Card image cap" />
+        <CardBody>
+          <CardTitle>{site.name}</CardTitle>
+          <CardSubtitle>{site.location}, {site.state}</CardSubtitle>
+          <CardText>{site.description}</CardText>
+          <Button>Button</Button>
+        </CardBody>
+      </Card>
+    </Col>
+  ));
+
+const SitesListWithData = graphql(allSitesQuery)(SitesList);
+
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -29,74 +60,7 @@ export default class App extends Component {
         </Jumbotron>
         <Container>
           <Row>
-            <Col>
-              <Card>
-                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                <CardBody>
-                  <CardTitle>Card title</CardTitle>
-                  <CardSubtitle>Card subtitle</CardSubtitle>
-                  <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                  <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                <CardBody>
-                  <CardTitle>Card title</CardTitle>
-                  <CardSubtitle>Card subtitle</CardSubtitle>
-                  <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                  <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                <CardBody>
-                  <CardTitle>Card title</CardTitle>
-                  <CardSubtitle>Card subtitle</CardSubtitle>
-                  <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                  <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <Card>
-                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                <CardBody>
-                  <CardTitle>Card title</CardTitle>
-                  <CardSubtitle>Card subtitle</CardSubtitle>
-                  <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                  <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                <CardBody>
-                  <CardTitle>Card title</CardTitle>
-                  <CardSubtitle>Card subtitle</CardSubtitle>
-                  <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                  <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
-            <Col>
-              <Card>
-                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
-                <CardBody>
-                  <CardTitle>Card title</CardTitle>
-                  <CardSubtitle>Card subtitle</CardSubtitle>
-                  <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                  <Button>Button</Button>
-                </CardBody>
-              </Card>
-            </Col>
+            <SitesListWithData />
           </Row>
         </Container>
       </div>
@@ -104,20 +68,4 @@ export default class App extends Component {
   }
 }
 
-// import { graphql } from 'react-apollo';
-// import gql from 'graphql-tag';
-//
-// const allUsersQuery = gql`
-//   {
-//     getAllUsers {
-//       id
-//       email
-//     }
-//   }
-// `;
-//
-// const Main = ({ data: { getAllUsers = [] } }) =>
-//   getAllUsers.map(user =>
-//     <h1 key={user.id}>{user.email}</h1>);
-//
-// export default graphql(allUsersQuery)(Main);
+export default App;
