@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {
   Container,
-  Row,
-  Col,
   Form,
   FormGroup,
   Label,
@@ -16,13 +14,11 @@ import gql from 'graphql-tag';
 class Register extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       username: '',
       password: '',
       email: '',
     };
-
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }

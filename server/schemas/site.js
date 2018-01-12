@@ -6,6 +6,7 @@ export default `
     state: String!
     description: String!
     reviewCount: Int!
+    image: String!
     reviews: [Review!]!
     createdAt: String!
     updatedAt: String!
@@ -17,8 +18,8 @@ export default `
   }
 
   type Mutation {
-    createSite(name: String!, location: String!, state: String!, description: String!): Boolean!
-    updateSite(name: String!, location: String!, state: String!, description: String!): Boolean!
+    createSite(name: String!, location: String!, state: String!, description: String!, image: String!): Boolean!
+    updateSite(name: String!, location: String!, state: String!, description: String!, image: String!): Boolean!
     removeSite(id: Int!): Boolean!
   }
 `;

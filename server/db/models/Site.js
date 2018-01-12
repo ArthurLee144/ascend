@@ -21,6 +21,10 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
   Site.associate = (models) => {
     Site.hasMany(models.Review, {

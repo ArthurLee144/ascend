@@ -21,6 +21,7 @@ class Create extends Component {
       location: '',
       state: '',
       description: '',
+      image: '',
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -35,11 +36,11 @@ class Create extends Component {
 
   onSubmit(event) {
     const {
-      name, location, state, description,
+      name, location, state, description, image,
     } = this.state;
     this.props.mutate({
       variables: {
-        name, location, state, description,
+        name, location, state, description, image,
       },
     })
       .then(() => {
@@ -48,6 +49,7 @@ class Create extends Component {
           location: '',
           state: '',
           description: '',
+          image: '',
         });
       });
     event.preventDefault();
@@ -55,7 +57,7 @@ class Create extends Component {
 
   render() {
     const {
-      name, location, state, description,
+      name, location, state, description, image,
     } = this.state;
     return (
       <div>
@@ -82,6 +84,10 @@ class Create extends Component {
               <Label for="description">Description</Label>
               <Input type="textarea" name="description" onChange={this.onChange} value={description} />
             </FormGroup>
+            <FormGroup>
+              <Label for="image">Image Link</Label>
+              <Input type="text" name="image" placeholder="Image Link" onChange={this.onChange} value={image} />
+            </FormGroup>
             <Button onClick={this.onSubmit}>Submit</Button>
           </Form>
         </Container>
@@ -91,8 +97,8 @@ class Create extends Component {
 }
 
 const createMutation = gql`
-  mutation ($name: String!, $location: String!, $state: String!, $description: String!) {
-    createSite(name: $name, location: $location, state: $state, description: $description)
+  mutation ($name: String!, $location: String!, $state: String!, $description: String!, $image: String!) {
+    createSite(name: $name, location: $location, state: $state, description: $description, image: $image)
   }
 `;
 
