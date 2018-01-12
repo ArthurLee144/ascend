@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 const SALT_ROUNDS = 12;
 
